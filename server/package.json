@@ -7,6 +7,9 @@
     "dev": "node --watch src/index.js",
     "start": "node src/index.js"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "cloudinary": "^2.10.0",
     "cors": "latest",
