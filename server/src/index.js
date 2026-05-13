@@ -11,7 +11,8 @@ import { adminOnly } from './middleware/auth.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = Number(process.env.PORT || 5000);
+const HOST = process.env.HOST || '0.0.0.0';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@sawad.com';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '123456';
@@ -555,8 +556,8 @@ app.get('/api/stats', adminOnly, async (_, res) => {
   });
 });
 
-app.listen(PORT, async () => {
+app.listen(PORT, HOST, async () => {
   const storage = await getStorageMeta().catch(() => ({ driver: 'unknown' }));
-  console.log(`SAWAD API running on http://localhost:${PORT}`);
+  console.log(`SAWAD API running on ${HOST}:${PORT}`);
   console.log(`Storage driver: ${storage.driver}`);
 });
